@@ -18,7 +18,7 @@ CREATE TABLE elearning.instructors(
 	last_name VARCHAR(50) NOT NULL,
 	email VARCHAR(255) NOT NULL UNIQUE
 );
-);
+
 
 CREATE TABLE elearning.courses(
 	course_id SERIAL PRIMARY KEY,
