@@ -71,16 +71,15 @@ INSERT INTO Transactions(transaction_id,ticket_id,payment_method,transaction_dat
 ('TR004','TK004','E-Wallet','2025-06-04',500000),
 ('TR005','TK005','Credit Card','2025-06-05',900000);
 
---- CHECK DỮ LIỆU
-SELECT * FROM Passengers;
-SELECT * FROM Trains;
-SELECT * FROM Tickets;
-SELECT * FROM Transactions;
-
 --- Viết câu lệnh UPDATE giảm giá vé 15% (price = price * 0.85) cho các vé tàu có ngày khởi hành trước ngày 2025-05-01.
 UPDATE Tickets 
 SET ticket_price = ticket_price * 0.85
 WHERE departure_date < '2025-05-01';
+-- Gọi kiểm tra
+SELECT * FROM Tickets WHERE departure_date < '2025-05-01';
+-- Thêm dữ liệu nếu không có
+-- INSERT INTO Tickets(ticket_id,passenger_id,train_id,departure_date,seat_number,ticket_price) VALUES
+-- ('TK099','P001','T001','2025-04-10','A01',850000);
 
 --- Viết câu lệnh DELETE xóa các giao dịch có phương thức là "E-Wallet" và số tiền nhỏ hơn 200.000 VNĐ.
 DELETE FROM Transactions
@@ -145,6 +144,21 @@ JOIN Passengers p
 	ON p.passenger_id = t.passenger_id
 GROUP BY p.passenger_id
 HAVING COUNT(t.train_id) >= 3;
+-- Thêm dữ liệu nếu không có
+-- INSERT INTO Tickets(ticket_id,passenger_id,train_id,departure_date,seat_number,ticket_price) VALUES
+-- ('TK030','P001','T001','2025-06-10','A01',850000),
+-- ('TK031','P002','T001','2025-06-11','B05',650000),
+-- ('TK032','P003','T001','2025-06-12','C10',720000),
+-- ('TK033','P004','T001','2025-06-13','D12',500000),
+-- ('TK034','P002','T001','2025-06-14','E08',900000),
+-- ('TK035','P003','T001','2025-06-10','A01',850000),
+-- ('TK036','P004','T001','2025-06-11','B05',650000),
+-- ('TK037','P002','T001','2025-06-12','C10',720000),
+-- ('TK038','P003','T001','2025-06-13','D12',500000),
+-- ('TK039','P004','T001','2025-06-10','A01',850000),
+-- ('TK040','P005','T001','2025-06-11','B05',650000),
+-- ('TK041','P002','T001','2025-06-12','C10',720000),
+-- ('TK042','P003','T001','2025-06-13','D12',500000);
 
 --- Liệt kê các đoàn tàu đã có hơn 10 lượt khách đặt vé.
 SELECT 
@@ -155,6 +169,21 @@ JOIN Trains tr
 ON t.train_id = tr.train_id
 GROUP BY tr.train_id
 HAVING COUNT(t.ticket_id) > 10;
+-- -- Thêm dữ liệu nếu không có
+-- INSERT INTO Tickets(ticket_id,passenger_id,train_id,departure_date,seat_number,ticket_price) VALUES
+-- ('TK030','P001','T001','2025-06-10','A01',850000),
+-- ('TK031','P002','T001','2025-06-11','B05',650000),
+-- ('TK032','P003','T001','2025-06-12','C10',720000),
+-- ('TK033','P004','T001','2025-06-13','D12',500000),
+-- ('TK034','P002','T001','2025-06-14','E08',900000),
+-- ('TK035','P003','T001','2025-06-10','A01',850000),
+-- ('TK036','P004','T001','2025-06-11','B05',650000),
+-- ('TK037','P002','T001','2025-06-12','C10',720000),
+-- ('TK038','P003','T001','2025-06-13','D12',500000),
+-- ('TK039','P004','T001','2025-06-10','A01',850000),
+-- ('TK040','P005','T001','2025-06-11','B05',650000),
+-- ('TK041','P002','T001','2025-06-12','C10',720000),
+-- ('TK042','P003','T001','2025-06-13','D12',500000);
 
 --- Lấy danh sách hành khách có tổng tiền giao dịch > 2.000.000 VNĐ, gồm: mã HK, họ tên, mã tàu, tổng tiền.
 SELECT 
@@ -171,7 +200,10 @@ GROUP BY
 	p.passenger_id,
 	p.passenger_full_name,
 	t.train_id
-HAVING  SUM(tst.amount) > 2000000;
+HAVING SUM(tst.amount) > 2000000;
+-- Thêm dữ liệu nếu không có
+-- INSERT INTO Transactions(transaction_id,ticket_id,payment_method,transaction_date,amount) VALUES
+-- ('TR006','TK005','Credit Card','2025-06-01',20000000);
 
 --- Lấy danh sách hành khách có tên chứa chữ "Hoàng" hoặc địa chỉ email thuộc miền "@gmail.com". Sắp xếp theo tên tăng dần.
 SELECT *
@@ -179,12 +211,24 @@ FROM Passengers
 WHERE passenger_full_name ILIKE '%hoàng%'
 	OR passenger_email LIKE '%@gmail.com'
 ORDER BY passenger_full_name;
+-- Thêm dữ liệu nếu không có
+-- INSERT INTO Passengers(passenger_id,passenger_full_name,passenger_email,passenger_phone,passenger_cccd) VALUES
+-- ('P006','Nguyễn Văn Hoàng','hoang.nguyen@example.com','0912345678','001234567890'),
+-- ('P007','Tran Thi Binh','binh.tran@gmail.com','0923456789','002345678901');
+
 
 --- Lấy danh sách đoàn tàu (trang thứ 2, mỗi trang 5 bản ghi) sắp xếp theo số ghế giảm dần.
 SELECT *
 FROM Trains
 ORDER BY total_seats DESC
 LIMIT 5 OFFSET 5;
+-- Thêm dữ liệu nếu không có
+-- INSERT INTO Trains(train_id,train_name,train_type,total_seats) VALUES
+-- ('T006','Tau Thong Nhat 3','SE',500),
+-- ('T007','Tau Thong Nhat 4','TN',450),
+-- ('T008','Tau Sai Gon - Da Lat','SE',400),
+-- ('T009','Tau Ha Noi - Thanh Hoa','TN',350),
+-- ('T010','Tau Da Nang - Lao Cai','SE',300);
 
 --- Tạo view vw_UpcomingTrips hiển thị thông tin tàu và hành khách đã đặt vé với ngày khởi hành sau ngày 2025-06-01,
 --- gồm:Họ tên, Tên tàu, Số ghế, Giá vé, Ngày khởi hành.
@@ -201,7 +245,7 @@ JOIN Passengers p
 JOIN Trains tr
 	ON tr.train_id = t.train_id
 WHERE t.departure_date > '2025-06-01';
-
+--- Gọi view vw_UpcomingTrips
 SELECT * FROM vw_UpcomingTrips;
 
 --- Tạo view vw_HighValueTickets hiển thị khách hàng đặt vé có giá trị trên 500.000 VNĐ, gồm: Họ tên, Tên tàu, Số ghế, Giá vé.
@@ -217,7 +261,7 @@ JOIN Passengers p
 JOIN Trains tr
 	ON tr.train_id = t.train_id
 WHERE t.ticket_price > 500000;
-
+-- Gọi view vw_HighValueTickets
 SELECT * FROM vw_HighValueTickets;
 
 --- Tạo trigger tg_check_ticket_date kiểm tra khi chèn vào bảng Tickets. 
@@ -276,7 +320,11 @@ AS $$
 	END;
 $$;
 
+-- Gọi để thêm dữ liệu
 CALL sp_add_passenger('P008','Pham Thi Nhu','nhu.pham@example.com','0912345312','001234564161');
+-- Ví dụ bị lỗi
+CALL sp_add_passenger('P008','Pham Thi Nhu','nhu.pham@example.com','0912345312','001234564161');
+
 
 --- Viết Procedure sp_cancel_ticket nhận vào p_ticket_id, thực hiện xóa vé trong bảng Tickets và các giao dịch liên quan trong bảng Transactions.
 CREATE OR REPLACE PROCEDURE sp_cancel_ticket(
@@ -309,7 +357,11 @@ AS $$
 	END;
 $$;
 
-CALL sp_cancel_ticket('TK002');
+-- Gọi khi có lữ liệu
+CALL sp_cancel_ticket('TK001');
 SELECT * FROM Tickets;
 SELECT * FROM Transactions;
+
+-- Gọi khi không có lữ liệu
+CALL sp_cancel_ticket('TK999');
 
