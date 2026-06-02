@@ -16,3 +16,6 @@
 [submodule "Java/session-09/QuanLyNhieuDoiTuong"]
 	path = Java/session-09/QuanLyNhieuDoiTuong
 	url = git@github.com:DungDev12/java_fudamental_session09_excercies02.git
+[submodule "Java/session-09/StudentManagement"]
+	path = Java/session-09/StudentManagement
+	url = git@github.com:DungDev12/java_fudamental_session09_excercies03.git
