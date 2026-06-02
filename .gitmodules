@@ -10,3 +10,6 @@
 [submodule "Java/session-08/TyLeQuyDoiTienTe"]
 	path = Java/session-08/TyLeQuyDoiTienTe
 	url = git@github.com:DungDev12/java_fudamental_session08_excercies03.git
+[submodule "Java/session-09/PhuongThucXuLyRectangle"]
+	path = Java/session-09/PhuongThucXuLyRectangle
+	url = git@github.com:DungDev12/java_fudamental_session09_excercies01.git
