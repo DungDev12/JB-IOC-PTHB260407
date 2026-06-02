@@ -7,3 +7,6 @@
 [submodule "Java/session-08/TinhToanDienTichHCNvaTimDienTichLonNhat"]
 	path = Java/session-08/TinhToanDienTichHCNvaTimDienTichLonNhat
 	url = git@github.com:DungDev12/java_fudamental_session08_excercies04.git
+[submodule "Java/session-08/TyLeQuyDoiTienTe"]
+	path = Java/session-08/TyLeQuyDoiTienTe
+	url = git@github.com:DungDev12/java_fudamental_session08_excercies03.git
