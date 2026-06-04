@@ -25,3 +25,6 @@
 [submodule "Java/session-10/Zoo_Management"]
 	path = Java/session-10/Zoo_Management
 	url = git@github.com:DungDev12/java_fudamental_session10_excercies05.git
+[submodule "Java/session-10/Quan_Ly_Phuong_Tien"]
+	path = Java/session-10/Quan_Ly_Phuong_Tien
+	url = git@github.com:DungDev12/java_fudamental_session10_excercies04.git
